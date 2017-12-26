@@ -17,7 +17,7 @@ module.exports = Object.keys(languages).map(lan => {
   return {
     entry: {
         lib: [ 'react', 'react-dom', 'babel-polyfill' ],
-        app: ['./src/index.js']
+        app: ['./src/app.js']
     },
     output: {
         publicPath: isDev ? '/' : '/static/',
