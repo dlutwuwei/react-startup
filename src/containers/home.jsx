@@ -1,5 +1,8 @@
 import React from 'react';
 import logo from 'img/logo.svg';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { hello } from '../redux/home-redux';
 
 const Home = () => (
   <div>
@@ -13,4 +16,15 @@ const Home = () => (
   </div>
 )
 
-export default Home;
+const mapStateToProps = state => ({
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({
+      hello
+    }, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

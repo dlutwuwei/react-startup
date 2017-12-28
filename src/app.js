@@ -5,6 +5,9 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import homeReducer from './redux/home-redux';
 
 import './style/index.css';
 import Home from './containers/home';
@@ -13,14 +16,18 @@ import Topics from './containers/topics';
 import About from './containers/about';
 
 
+const store = createStore(homeReducer, {}, applyMiddleware(thunkMiddleware));
+
 ReactDOM.render((
-  <Router>
-    <div>
-      <Route exact path="/" component={Home}/>
-      <Route path="/about" component={About}/>
-      <Route path="/topics" component={Topics}/>
-    </div>
-  </Router>), document.getElementById('root'));
+  <Provider store={store}>
+    <Router>
+      <div>
+        <Route exact path="/" component={Home}/>
+        <Route path="/about" component={About}/>
+        <Route path="/topics" component={Topics}/>
+      </div>
+    </Router>
+  </Provider>), document.getElementById('root'));
 
 
 
