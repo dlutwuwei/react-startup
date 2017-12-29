@@ -36,17 +36,8 @@ module.exports = Object.keys(languages).map(lan => {
             "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
         },
         proxy: {
-          '/upload': {
-            target: 'http://60.205.107.191:8808/',
-          },
-          '/lib': {
-            target: 'http://60.205.107.191:8808/',
-          },
-          '/unity_web/': {
-            target: 'http://60.205.107.191:8808/',
-          },
           '/api': {
-              target: 'http://60.205.107.191:8808/',
+              target: 'https://8e2a6ecd-1216-48bd-9bc2-77f6b24e1485.mock.pstmn.io',
               changeOrigin: true,
               bypass: function(req, res, proxyOptions) {
                 if (req.headers.accept.indexOf('html') !== -1) {
