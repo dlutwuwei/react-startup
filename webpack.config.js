@@ -17,7 +17,8 @@ module.exports = Object.keys(languages).map(lan => {
   return {
     entry: {
         lib: [ 'react', 'react-dom', 'babel-polyfill' ],
-        app: ['./src/app.js']
+        app: ['./src/app.js'],
+        board: ['./src/board.js']
     },
     output: {
         publicPath: isDev ? '/' : '/static/',
@@ -37,7 +38,7 @@ module.exports = Object.keys(languages).map(lan => {
         },
         proxy: {
           '/api': {
-              target: 'https://8e2a6ecd-1216-48bd-9bc2-77f6b24e1485.mock.pstmn.io',
+              target: 'https://8e2a6ecd-1216-48bd-9bc2-77f6b24e1485.mock.pstmn.io/',
               changeOrigin: true,
               bypass: function(req, res, proxyOptions) {
                 if (req.headers.accept.indexOf('html') !== -1) {
@@ -136,8 +137,16 @@ module.exports = Object.keys(languages).map(lan => {
         new webpack.optimize.CommonsChunkPlugin({ name: 'lib' }),
         new HtmlWebpackPlugin({
             template: 'public/index.html',
+            filename: 'index.html',
+            chunks: ['lib', 'app'],
             inject: true
         }),
+        new HtmlWebpackPlugin({
+          template: 'public/index.html',
+          filename: 'board.html',
+          chunks: [ 'lib', 'board'],
+          inject: true
+      }),
         new ExtractTextPlugin({
             filename: 'css/app-[contenthash:6].css',
             allChunks: true
