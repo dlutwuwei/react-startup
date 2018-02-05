@@ -4,6 +4,7 @@
 
 - react-router  v4
 - react v16
+- redux
 
 ## es6
 - es2015
@@ -11,13 +12,17 @@
 - babel-polyfill
 
 ## css相关
-- autofixer
-- scss
+- auto-prefixer
+- less
 - css module
 
 ## lib
 
 ### fetch
-```
-fetch.get('/api/Schedule/getList', {}).then(() => {});
+
+```js
+fetch.get('/api/Schedule/getList', {})
+.then(() => {});
+fetch.post('/api/Schedule/getList', {})
+.then(() => {});
 ```
